@@ -54,8 +54,6 @@ void main() {
       when(mockSharedPreferences.getString('data')).thenReturn(null);
       when(mockHttpClient.get(any))
           .thenAnswer((_) async => http.Response('Error', 404));
-      // when(mockSharedPreferences.setString(any, any))
-      //     .thenAnswer((_) async => Future.value(true));
 
       // Act & Assert
       expect(() => dataRepository.fetchData(), throwsException);
