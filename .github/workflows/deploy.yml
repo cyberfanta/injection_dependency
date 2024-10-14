@@ -32,9 +32,16 @@ jobs:
       - name: Build web
         run: flutter build web --release
 
+      - name: Copy .env to build/web
+        run: cp assets/.env build/web/assets/.env
+
       - name: Create 404.html
         run: |
           echo "<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; URL='./index.html'\" /></head></html>" > build/web/404.html
+
+      - name: Update base href
+        run: |
+          sed -i 's|<base href="/">|<base href="/injection_dependency/">|' build/web/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
