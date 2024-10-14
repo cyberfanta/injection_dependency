@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Check API_KEY
+        run: echo "API_KEY=${{ secrets.API_KEY }}"
+
       - name: Create .env file
         run: |
           mkdir -p assets
